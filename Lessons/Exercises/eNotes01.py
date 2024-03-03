@@ -1,0 +1,405 @@
+# -*- coding: utf-8 -*-
+"""
+Filename: eNotes01.py
+Created on Fri Feb  9 20:41:48 2024
+
+@author: Celso Co
+"""
+
+from ccoLib.ccoPlot  import *
+from ccoLib.ccoLatex import *  #This is the library for Python-Tex coding.
+from Data.variables import *
+
+title="eNotes: The Conic Section"
+authors="CBCO"
+date=""
+
+Preamble="\\documentclass[10pt,a4paper,leqno]{article}\n\
+\\usepackage{CJKutf8}\n\
+\\usepackage[utf8]{inputenc}\n\
+\\usepackage[T1]{fontenc}\n\
+\\usepackage{amsmath,esint}\n\
+\\usepackage{amsfonts}\n\
+\\usepackage{amssymb}\n\
+\\usepackage{xcolor}\n\
+\\usepackage{mathrsfs}\n\
+\\usepackage{makeidx}\n\
+\\usepackage{graphicx}\n\
+\\usepackage{float}\n\
+\\usepackage{gensymb}\n\
+\\usepackage{textcomp}\n\
+\\usepackage{longtable}\n\
+\\usepackage{ifpdf}\n\
+\\usepackage{tikz}                            \n\
+\\usetikzlibrary{shapes,arrows}               \n\
+%\\usepackage{tgothic}\n\
+\\ifpdf\n\
+\\usepackage[breaklinks,hidelinks]{hyperref}\n\
+\\else \n\
+\\usepackage{url}\n\
+\\fi\n\
+\\newcommand*\VF[1]{\mathbf{#1}}\n\
+\\newcommand*\dif{\mathop{}\!\mathrm{d}}\n\
+\\author{"+authors+"}\n\
+\\title{"+title+"}\n\
+\\date{"+date+"}\n\
+\\begin{document}\n\
+\\maketitle\n\n"
+
+
+PyArt=PyArticle(Headers=Preamble)
+          
+             
+#Shortcut Handlers 
+
+At=PyArt.Append_Text            #Append text variable
+Ae=PyArt.Append_Expression      #Append expression
+Ce=PyArt.Append_Equation        #Create equation
+Pb=PyArt.Build                  #Build Latex File
+Af=PyArt.Append_Figure          #Append figure
+Ad=PyArt.Append_Var_Dictionary  #Append Variable Dictionary
+Ml=PyArt.Math_Latex             #Convertion to Math format latex    
+eQ=PyArt.eQ                     #Equation List
+vD=PyArt.vD                     #Variable List
+   
+
+
+#Multiple Choices
+"""
+At("\\newcommand\\CWht[1][2.5]{\\tikz[baseline=-#1]{\\draw[thick](0,0) \
+    circle[radius=1.5mm];}}")
+#CBlk is circle with black fill
+At("\\newcommand\\CBlk[1][2.5]{\\tikz[baseline=-#1]{\\draw[thick,\
+    fill=black!](0,0) circle[radius=1.5mm];}}")
+"""
+
+#Numbering equation within section
+At("\\numberwithin{equation}{section} % This line resets equation numbering \
+when starting a new section. \n\
+\\renewcommand{\\theequation}{\\thesection.\\arabic{equation}}  \n\
+%\\renewcommand{\\theequation}{Eq. \\thesection.\\arabic{equation}} % This line ads Eq.")
+
+At("\\numberwithin{figure}{section}\n\
+% \\renewcommand{\theequation}{Eq. \thesection.\arabic{equation}}")   
+
+At("\\begin{CJK*}{UTF8}{gbsn}")
+
+from cone01 import *
+
+At("\\section{Introduction }")
+
+At("A conic section is an intersection of a cone with a plane.")
+
+
+At("In Figure 1.1, the cones were plotted with two different methods.")
+
+
+Af("Data/fgr01.png",caption="(a) Cone = f(x,y,z)  (b) Cone = f(rho,phi,z) ",
+   height=.7)
+
+At("Open Cone01.py. Study the codes and run the file.")
+
+
+At("The equation in cylindrical coordinate systems is expressed as follows.")
+Ce(eConeCyl.lhs,eConeCyl.rhs)
+At("Note that $\\phi$ is absent. It means that for any value of phi eConeCyl \
+equation holds.")
+
+At("The geometric relationship between Cartesian and cylindrical coordinate \
+are expressed as follows.")
+
+Ce(sx.lhs,sx.rhs)
+Ce(sy.lhs,sy.rhs)
+Ce(sz.lhs,sz.rhs)
+
+At("The equation of cone can be found at \\url{https://mathworld.wolfram.com/Cone.html} ")
+
+Ce(ecdelta.lhs,ecdelta.rhs)
+Ce(ecz.lhs,ecz.rhs)
+Ce(ecx.lhs,ecx.rhs)
+Ce(ecy.lhs,ecy.rhs)
+
+
+At("The equations above is the converstion of cylindrical coordinate to cartesian \
+systems.")
+
+Ce(ecx1.lhs,ecx1.rhs)
+Ce(ecy1.lhs,ecy1.rhs)
+Ce(ecx2.lhs,ecx2.rhs)
+Ce(ecy2.lhs,ecy2.rhs)
+
+At("The symbolic math equation of a cone in Cartesian system is expressed as follows.")
+Ce(eConeCar.lhs,eConeCar.rhs)
+At("The base radius and height of the cone are given as follows.")
+Ce(base, nbase)
+Ce(height,nheight)
+
+At("The equation of the cone is substituted with numerical parameters given \
+above as follows.")
+Ce(eConeCar1.lhs,eConeCar1.rhs)
+
+
+At("\\section{Surface Plot Algorithms of a Cone }")
+
+At("The mathematical expressions for surface plots in Cartesian coordinate \
+system are expressed as follows.")
+
+Ce(z,fF(x,y),c = "\\quad where z is dependent variable and x and y are independent variables ")
+Ce(x,fF(z,y),c = "\\quad where x is dependent variable and z and y are independent variables ")
+Ce(y,fF(x,z),c = "\\quad where y is dependent variable and x and z are independent variables " )
+
+
+At("The mathematical expression for surface plots in cylindrical coordinate \
+system are expressed as follos.")
+
+Ce(phi,fF(rho,z), c = "\\quad where phi is the dependent variable and \
+rho and z are independent variables ")
+
+Ce(rho,fF(phi,z), c = "\\quad where rho is the dependent variable and \
+phi and z are independent variables ")
+
+Ce(z,fF(phi,rho), c = "\\quad where z is the dependent variable and \
+phi and rho are independent variables ")
+
+
+At("The surface plots of a cone in Figure 1 (a)  were generated by cone01.py \
+codes. The dependent variable is z and the independent variables are x and y. \
+Thus z = f(x,y). The algorithm of plot 1 is directly Cartesian meshgrid. Hence, \
+mx,my = meshgrig(x,y). The meshgrid of z is mz=f(mx,my). ")
+
+At("The algorithm of plot 2 is cylindrical meshgrid that is converted to \
+Cartesian meshgrid. The surface equation in cylindrical coordinate system is "+
+Ml(Eq(z,fF(phi,rho)))+".  Hence, cylindrical meshgrids is $m\\phi,m\\rho = \
+meshgrid(\\phi,\\rho)$. Converting cylindrical meshgrids to Cartesian, \
+$mx = m\\rho cos(m\\phi)$ and $my = m\\rho sin(m\\phi)$ by virtue of geometric \
+relationship between Cartesian and Cylindrical coordinate systems. The \
+meshgrid z is $mz=f(mx,my)$.")
+
+
+
+
+
+
+from cone02 import *
+
+At("\\section{Intersection of a Cone and of a Plane }")
+
+At("The equation of a cone in cylindrical system is expressed as follows.")
+
+Ce(eConeCyl.lhs,eConeCyl.rhs)
+
+At("The variable $\\phi$ is absent. It means that for any value of $\\phi$ \
+the equation holds.")
+
+At("To make the $\\phi$ and $\\rho$ as independent variables, the dependent \
+varialble is z. Thus,")
+
+Ce(z,szCyl)
+
+
+At("The equations of a plane are expressed as follows.")
+
+Ce(A*x+B*y+C*z+K,0)
+
+Ce(Eq(z,fF(x,y)),sz)
+
+
+At("The plot of a cone is shown in Figure 3.1 (a) and the plot of a plane is \
+shown in Figure 3.1 (b).")
+
+Af("Data/fgr02.png",caption="A plane overlapping with cone.",height=.7)
+
+
+At("The plot of the cone in Figure 3.1 (a) and the Plot of the plane in \
+Figure 3.1 (b) were plotted together in Figure 3.1 (c). There exists locus of \
+points that are common to both cone and plane surfaces. The locus of points \
+defines a curve line. The curve line is an eliptical as shown in Figure 3.1 (d).")
+
+
+At("The surface equations are expressed as z = f(x,y) or x=f(z,y) or y=f(x,z). \
+The rhs has the independent variables. The lhs has the dependent variable. \
+Consider the surface plots of a cone and a plane with z as the dependent \
+variable and x and y as the independent variables. Thus,")
+
+Ce(zc,fF(xc,yc),c="\\quad cone equation")
+Ce(zp,fF(xp,yp),c="\\quad plane equation")
+
+
+At("A line in 3D space where the cone and the plane intersected could be drawn \
+and plotted. The locus of points must be the common points of the cone and the \
+plane. Hence, x=xc=xp; y=yc=yp; and z=zc=zp")
+
+At("The equations of the cone with xc a dependent variable and yc and zc as \
+independent vatiable is expressed as follows.")
+Ce(xc,fF(yc,zc))
+
+At("The equations of the plane with yp a dependent variable and xp and zp as \
+independent vatiable is expressed as follows.")
+Ce(yp,fF(xp,zp))
+
+At("Substituting yp in yc,")
+Ce(xc,fF(fF(xp,zp),zc))
+
+At("Since the locus of points of intersection must be the seame for both cone \
+and plane, thus, ")
+
+Ce(x,fF(fF(x,z),z))
+
+At("Solving for x,")
+
+Ce(x,fF(z))
+
+At("In like process,")
+
+Ce(y,fF(z))
+
+
+At("Given a set of values of z, the x and y are computed. The values of x, y, \
+and z forms the locus of points common to both the cone and plane.")
+
+
+
+
+"""
+object      no of equations  no of dependent variables no of independent variables
+surface     1                1                         2
+line        2                2                         1           
+point       0                0                         3      
+
+"""
+
+At("The relationships of objects, equations and type of variables for plot \
+algorithm are tabulated as follows.")
+
+At("\\begin{tabular}\n\
+{p{1cm} p{3cm} p{3cm} p{3cm} }\n\
+object& no of equations &no. of defendent variable &no. of independent variable \\\ \n\
+surface&1&1&2 \\\ \n\
+line&2&2&1 \\\ \n\
+point&0&0&3 \\\ \n\
+\\end{tabular}" )
+
+
+
+
+
+
+from cone03 import *
+
+At("\\section{Conic Sections }")
+
+At("The Figure 3 illustrate the mirrored cones that define conic section.")
+
+At("The equation of upper cone expressed in terms Cartesian coordinate system \
+is shown as follows.")
+
+Ce(ec2.lhs,ec2.rhs)
+
+At("The equation of the disk in terms of Cartesian coordinate system is \
+expressed as follows.")
+
+Ce(e1CylDisk.lhs,e1CylDisk.rhs)
+
+At("The intersection of the upper cone with a disk is shown in Figure 3")
+
+At("The disk plane intersecting with a cone generates a locus of points of \
+    circle.")
+
+Af("Data/fgr03.png",caption="Cones section that defined a circle. ",height=.7)
+
+
+
+At("The disk could be tilted and the locus of intersecting points forms an elipse.")
+
+At("The equation of the tilted disk is expressed as follows.")
+
+Ce(e1PlaneCar.lhs,e1PlaneCar.rhs)
+
+
+Af("Data/fgr04.png",caption="Conic section cut by disk plane at an angle genrated \
+an elipse an eliptical locus of points.",height=.7)
+
+
+
+
+
+
+from cone04 import *
+
+At("When the tilt is in parallel with the slope of the side of the cone, the \
+   locus of points form a parabola.")
+
+At("The equation of the disk tilted in parallel with the slope of the lateral \
+side of the cone. The cone and the tilted disk is shown in Figure 5.")
+
+Ce(plnCart.lhs,plnCart.rhs)
+
+Af("Data/fgr05.png",caption="A Conic section that generated a parabola. ",height=.7)
+
+
+
+from cone05 import *
+
+
+At("When the disk plane is in parallel with the vertical axis of the cone, \
+   the locus of points forms a hyperbola. Note the intersection cut across \
+   both the upper and lower cones.")
+
+At("The equation of the disk titled in parallel with the cone vertical axis \
+is shown as follows.")
+
+Ce(plnCart.lhs,plnCart.rhs)
+
+Af("Data/fgr06.png",caption="A Conic section that generated a hyperbola. ",height=.7)
+
+
+At("\\section{Exercises}")
+
+At("1. Create your own inverted and upright cones. The tips of the cones rest \
+at origin. Formulate the cylindrical and Cartesian equations of the inverted \
+and upright cones. (75)")
+
+At("2. Create your own plane disk perpendicular to the z axis and cut the \
+upright cone below the origin. Choose your own distance value below the origin. \
+Formulate the disk equation. (5) ")
+
+
+At("3. Formulate the two equations that define the locus of intersection points \
+of the upright cone and the disk. (5)")
+
+At("4. What is the range of disk tilt angle such that the intersection forms \
+circular and/or eliptical curve lines. (5) ")
+
+At("5. What is the disk angle of tilt such that the intersection forms a \
+parabolic curve line. (5)")
+
+At("6. What is the disk angle of tilt such that the intersection forms a \
+hyperbolic curve lines. (5)")
+
+
+
+
+
+
+At("\\nocite{2}")
+At("\\nocite{3}")
+At("\\nocite{7}")
+At("\\nocite{8}")
+At("\\nocite{9}")
+At("\\nocite{11}")
+At("\\nocite{13}")
+At("\\nocite{15}")
+At("\\nocite{202}")
+At("\\nocite{203}")
+
+
+
+
+
+#At("\\bibliographystyle{plain} \n \\bibliography{ccoLib/ccoBook,ccoLib/ccoArticle}")
+At("\\bibliographystyle{plain} \n \\bibliography{ccoLib/ccobib}")
+
+
+At("\\end{CJK*}")
+
+Pb(Filename="eNotes01.tex")

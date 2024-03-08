@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Filename: cone01.py
+
+Created on Thu Nov  9 19:23:52 2023
+by CBCO
+
+@user:       username
+@co-author:  your name if you made any change in the file.
+
+"""
+
+from ccoLib.ccoVector import *
+from ccoLib.ccoPlot   import *
+from Data.variables   import *
+
+fgr01=Space3D(title="Figure 01",sz=(16,8)) 
+
+#sub figures
+ax1=[fgr01.Fig3D.add_subplot(1,2,1,projection="3d")]
+ax1.append(fgr01.Fig3D.add_subplot(1,2,2,projection="3d"))
+
+nbase=2;   "radius of the base of the cone. nbase is a numerical variable." 
+"圆锥体底面的半径。 nbase 是一个数值变量。"    
+nheight=8; "height of the cone"; "圆锥体的高度" 
+res=100;   "resolution"; "解决"
+
+"The equation in cylindrical coordinate systems is expressed as follows."
+"柱坐标系中的方程表示如下。"
+srho=base*(height-z)/height
+eConeCyl=Eq(rho,srho)
+"Note that phi is absent. It means that at any phi eConeCyl  equation holds."
+"请注意，phi 不存在。 这意味着在任何 phi eConeCyl 方程都成立。"
+"From vector library, let's use the dictionary CaCyD."
+"从向量库中，我们使用字典 CaCyD。"
+sx=Eq(x,CaCyD[x])
+sy=Eq(y,CaCyD[y])
+sz=Eq(z,CaCyD[z],evaluate=False)
+
+"The cone equations  https://mathworld.wolfram.com/Cone.html"
+"圆锥方程 https://mathworld.wolfram.com/Cone.html"
+sdelta=2*aTan(base/height)
+ecdelta=Eq(delta,sdelta)
+ecz=Eq(z,u)
+ecx=Eq(x,(height-u)/height*base*Cos(phi))
+ecy=Eq(y,(height-u)/height*base*Sin(phi))
+"The equations above is the converstion of cylindrical coordinate to cartesian systems."
+"上面的方程是柱坐标系到笛卡尔坐标系的转换。"
+ecx1=ecx.subs(u,z)
+ecy1=ecy.subs(u,z)
+ecx2=Eq(ecx1,rho*Cos(phi),evaluate=False)
+ecy2=Eq(ecy1,rho*Sin(phi),evaluate=False)
+"Equation of cone in Cartesian system"
+"笛卡尔系统中的圆锥方程"
+eConeCar=Eq(x**2+y**2,ecy.rhs**2+ecx.rhs**2).subs(u,z).simplify()
+
+"eConeCar is the symbolic math equation."
+"eConeCar 是符号数学方程。"
+eConeCar1=eConeCar.subs(u,z).subs(base,nbase).subs(height,nheight).simplify()
+"eConeCar1 is the symbolic math equation with numerical parameters."
+"eConeCar1 是带有数值参数的符号数学方程。"
+
+"Cone plot 1 Cartesian meshgrid algorithm."
+"锥体图 1 笛卡尔网格算法。" 
+"From Cartesian cone equation, x^2 maximum can be obtained by making y=0 and z=0"
+"从笛卡尔锥方程中，通过使 y=0 和 z=0 可以获得 x^2 最大值"
+x2max=solve(eConeCar1.subs(y,0).subs(z,0),x**2)[0]
+x2Maxe=Eq(var("max(x^{2})"),x2max)
+"The maximum and minimum x are obtained as follows."
+"最大和最小 x 的获得如下。"
+xMax=float(Sqrt(x2max))
+xMin=-float(Sqrt(x2max))
+
+"From Cartesian cone equation, y^2 maximum can be obtained by making x=0 and z=0."
+"由直角锥方程可知，使x=0、z=0即可得到y^2最大值。"
+y2max=solve(eConeCar1.subs(x,0).subs(z,0),y**2)[0]
+y2Maxe=Eq(var("max(y^{2})"),y2max)
+"The maximum and minimum y are obtained as follows."
+"最大和最小 y 的获得如下。"
+yMax=float(Sqrt(y2max))
+yMin=-float(Sqrt(y2max))
+
+"The lower and upper limit of the values of x and y are determined respectively \
+as follows."
+"x和y值的下限和上限分别确定如下。"
+cx=linspace(xMin,xMax,res)
+cy=linspace(yMin,yMax,res)
+
+"The x and y are independent variables. The dependent variable z is computed \
+as follows."
+"x 和 y 是自变量。 因变量 z 计算如下。"
+szCart=solve(eConeCar1,z)[0]
+
+"The Cartesian mesgrid of x and y are determined as follows."
+"x 和 y 的笛卡尔网格网格确定如下。"
+mcx,mcy = meshgrid(cx,cy) 
+
+"let's create a text expression to determne the meshgrid of z by text command \
+execution. The text for Cartesian meshgrid z is determined as follows." 
+"让我们创建一个文本表达式，通过执行文本命令来确定 z 的网格。 笛卡尔网格 z 的文本确定如下。"
+cmdtext="mcz="+str(szCart).replace("x","mcx").replace("y","mcy")
+"The command text for meshgrid z is executed as follows."
+"meshgrid z 的命令文本执行如下。"
+exec(cmdtext)
+#mcz=2.0-2.0*sqrt(mcx**2+mcy**2)
+"The Cartesian meshgrid algorithm generated the variables mcx, mcy, and mcz. "
+"笛卡尔网格算法生成变量 mcx、mcy 和 mcz。"
+"The Figure 1 (a) handler is set as follows."
+"图1(a)中的处理程序设置如下。"
+fgr01.ax=ax1[0]
+"The meshgrid axes made the surface plot as follows. "
+"网格轴绘制的曲面图如下。"
+fgr01.ax.plot_surface(mcx,mcy,mcz, alpha=.3)
+fgr01.Labels(title="(a) Cone Equations using Cartesian Meshgrid")
+fgr01.ShowAxes(4)
+
+
+"Cone plot 2 Cylindrical axes values are determine as follows."
+"圆锥图 2 圆柱轴值确定如下。"
+"The angle phi generated a set of values for one completed revolution."
+"角度 phi 为完成的一转生成一组值。"
+nphiL = linspace(0,2*npi,res)
+"The rho is a set of values from 0 to length of the base of the cone."
+"rho 是从 0 到圆锥体底长的一组值。"
+nrhoL = linspace(nbase,0,res)
+"The z is a set of values form 0 to the height of the cone."
+"z 是从 0 到圆锥体高度的一组值。"
+nzL   = linspace(0,nheight,res)
+
+"The independent Cylindrical meshgrid variables are phi and rho that are \
+generated as follows."
+"独立的圆柱网格变量是 phi 和 rho，生成如下。"
+nphiM,nrhoM = meshgrid(nphiL,nrhoL)
+
+"Since the plot space is in Cartesian coordinate system, the independent \
+Cylindrical meshgrid variables are phi and rho are converted to independent \
+Cartersian meshgrid varoables x and y using Carteesian and Cylindrical \
+geometirc relationships as follows."
+"独立的圆柱网格变量 由于绘图空间位于笛卡尔坐标系中，因此独立的圆柱网格变量 phi 和 rho \
+使用笛卡尔和圆柱几何关系转换为独立的笛卡尔网格变量 x 和 y，如下所示。"
+XM,YM = nrhoM*cos(nphiM), nrhoM*sin(nphiM)
+#ZM =8-4*nrhoM
+#ZM=8-4*sqrt(XM**2+YM**2)
+"The dependent Cartersian variables z is generated by command text as follows."
+"因卡特变量 z 由命令文本生成，如下所示。"
+cmdtxt="ZM="+str(szCart).replace("x","XM").replace("y","YM")
+
+exec(cmdtxt)
+"The handler for Figure 1 (b) plot is set as follows."
+"图 1 (b) 图的处理程序设置如下。"
+fgr01.ax=ax1[1]
+"The cylindrical meshgrids variables that were converted  to Cartesian meshgrid \
+variables are potted as folows."
+fgr01.ax.plot_surface(XM,YM,ZM,alpha=.2)
+fgr01.Labels(title="(b) Cone Equations using Polar Meshgrid")
+fgr01.ShowAxes(4)
+
+savefig("Data/fgr01.png")
+
+

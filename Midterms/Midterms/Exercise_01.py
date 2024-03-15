@@ -2,11 +2,11 @@
 """
 Created on Sun Mar 10 13:48:07 2024
 
-@author: Lenovo
+@author: MADT
 """
 
-from amrLib.amrVector import *
-from amrLib.amrPlot import *
+from madLib.madVector import *
+from madLib.madPlot import *
 from Data.variables import *
 
 

@@ -1,0 +1,63 @@
+\begin{thebibliography}{1}
+
+\bibitem{2}
+Daniel Braun Tim Hoffmann (TeXstudio) Pascal Brachet (Texmaker) Luc Buant
+  (QCodeEdit) Joel Amblard (html~conversion) Benito van~der Zander,
+  Jan~Sundermeyer.
+\newblock Textstudio 2.12.10.
+\newblock {\em \href{https://www.texstudio.org/}{Source Forge}}, Copyright
+  \copyright \ 2018.
+\newblock download from \url{https://sourceforge.net/projects/texstudio/}.
+
+\bibitem{202}
+Karl Berry.
+\newblock Latex2e: An unofficial reference manual, Copyright \copyright \ 2022,
+  Karl Berry, \href{https://latexref.xyz/dev/latex2e.html}{Latex2e}.
+
+\bibitem{3}
+Matthew Brett pv (avatar) Ralf Gommers rkern Travis Oliphant Tyler~reddy
+  Burovski, Evgeni.
+\newblock Scipy 1.1.0.
+\newblock {\em Scipy Developrs. Created using Sphinx 1.6.6
+  \url{http://www.sphinx-doc.org/en/master/},
+  \url{https://pypi.org/project/scipy/}}, 2018.
+\newblock download from \url{https://pypi.org/project/scipy/\#files}.
+
+\bibitem{7}
+cdavid certik Charles R. Harris Jarrod Milman jtaylor Mathew Brett Matti Picus
+  Ralf Gommers rkern Travis~Oliphant Haldane, Allan.
+\newblock Numpy 1.15.4.
+\newblock {\em Numpy Developrs. Created using Sphinx 1.6.6
+  \\url{http=//www.sphinx-doc.org/en/master/}}, 2018.
+\newblock download from \url{https://pypi.org/project/numpy/\#files}.
+
+\bibitem{8}
+John Hunter.
+\newblock Matplotlib.
+\newblock {\em MatPlotLIb Development Team}, 2002-2012, 2012-2018.
+\newblock downloaded from \url{https://matplotlib.org/}.
+
+\bibitem{9}
+Donald Knuth.
+\newblock Miktex.
+\newblock {\em Chrisstian Schenk. \url{https=//miktex.org/}}, 2018.
+
+\bibitem{11}
+Pierre Raybaut.
+\newblock Spyder 3.2.8, the sicentific python development environment.
+\newblock {\em The Spyder Project Contributors, Licensed under the terms of the
+  MIT License}, 2018.
+\newblock Download from \url{https=//github.com/spyder-ide/spyder}.
+
+\bibitem{13}
+Guido~van Rossum.
+\newblock Python 3.6.5.
+\newblock {\em Python Software Foundation. \url{https=//www.python.org/}},
+  2018.
+
+\bibitem{15}
+Sympy~Development Team.
+\newblock Sympy 1.3.
+\newblock {\em Github. \url{https=//github.com/sympy/sympy}}, 2018.
+
+\end{thebibliography}

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Filename: ccoVector.py
+Filename: madVector.py
 
 Rev 1 Wed Feb 14 07:00:24 2024
+Rev 2 Fri Mar 15 13:25:00 2024
 
-@author: CBCO
+@author: MADT
 
 """
 

@@ -9,7 +9,6 @@ cbco rev 4 Thu Jun 15 16:22:27 2023
 cbco rev 5 Wed Jan 10 02:40:22 2024
 cbco rev 6 Sat Feb 10 17:24:20 2024
 cbco rev 7 Wed Feb 21 00:42:17 2024
-madt rev 8 Fri Mar 15 13:24:00 2024
 
 """
 
@@ -91,7 +90,7 @@ from sympy   import latex, solve, symbols, pi, Eq, Matrix, Function,\
                     var, Abs, cos as Cos, sin as Sin, atan as aTan, \
                     sqrt as Sqrt, Le, acos as aCos, Inverse, tan as Tan,\
                     dsolve, I, exp as Exp, Lt, And, Or, Piecewise, Ne, \
-                    Integral, Derivative, Float, det, roots, Gt, Ge
+                    Integral, Derivative, Float, det, roots
                                         
 from sympy.codegen.cfunctions import log10 as Log10
 
@@ -339,9 +338,9 @@ class Space3D:
         return MovRotArc
 
     def GenLine(self,From=[0,0,0],To=[0,0,1]):
-        X=[From[0],To[0]]
-        Y=[From[1],To[1]]
-        Z=[From[2],To[2]]
+        X=[From[0],From[0]+To[0]]
+        Y=[From[1],From[1]+To[1]]
+        Z=[From[2],From[2]+To[2]]
         return [X,Y,Z]
 
     def GenPoints(self,coordinates):

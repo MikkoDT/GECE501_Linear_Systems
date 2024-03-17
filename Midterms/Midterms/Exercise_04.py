@@ -2,14 +2,14 @@
 """
 Created on Sat Mar  9 23:20:10 2024
 
-@author: Engr_Rosales
+@author: MADT
 
 4. What is the range of disk tilt angle such that the intersection
 forms circular  and/or eleptical curve lines.
 """
 #insert libraries
-from amrLib.amrVector import *
-from amrLib.amrPlot import *
+from madLib.madVector import *
+from madLib.madPlot import *
 from Data.variables import *
 
 

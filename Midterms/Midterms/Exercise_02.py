@@ -2,7 +2,7 @@
 """
 Created on Sun Mar 10 13:59:27 2024
 
-@author: Lenovo
+@author: MADT
 """
 
 """
@@ -12,8 +12,8 @@ distance value below the origin.Formulate the disk equation."
 
 """
 
-from amrLib.amrVector import *
-from amrLib.amrPlot import *
+from madLib.madVector import *
+from madLib.madPlot import *
 from Data.variables import *
 
 

@@ -6,10 +6,10 @@ Midterm Exercise #1
 curve lines.
 Created on Sat Mar  9 23:22:04 2024
 
-@author: ariel
+@author: MADT
 """
-from amrLib.amrVector import *
-from amrLib.amrPlot import *
+from madLib.madVector import *
+from madLib.madPlot import *
 from Data.variables import *
 
 

@@ -9,8 +9,13 @@ Midterm Exercise #1
 
 """
 #insert libraries
+<<<<<<< Updated upstream
 from amrLib.amrVector import *
 from amrLib.amrPlot import *
+=======
+from madLib.madVector import *
+from madLib.madPlot import *
+>>>>>>> Stashed changes
 from Data.variables import *
 
 

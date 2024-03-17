@@ -9,8 +9,8 @@ Midterm Exercise #1
 
 """
 #insert libraries
-from amrLib.amrVector import *
-from amrLib.amrPlot import *
+from madLib.amrVector import *
+from madLib.amrPlot import *
 from Data.variables import *
 
 

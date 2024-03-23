@@ -1,0 +1,86 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: FreeBodyDiagrams.aux
+The style file: plain.bst
+Database file #1: ccoLib/ccobib.bib
+Warning--entry type for "201" isn't style-file defined
+--line 415 of file ccoLib/ccobib.bib
+Warning--entry type for "202" isn't style-file defined
+--line 431 of file ccoLib/ccobib.bib
+I was expecting a `,' or a `}'---line 443 of file ccoLib/ccobib.bib
+ : 
+ : notes    ={\url{https://texdoc.org/serve/latex2e.pdf/0}}
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Too many commas in name 1 of "Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann (TeXstudio), Pascal Brachet (Texmaker), Luc Buant (QCodeEdit), Joel Amblard (html conversion)" for entry 2
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann (TeXstudio), Pascal Brachet (Texmaker), Luc Buant (QCodeEdit), Joel Amblard (html conversion)" for entry 2
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann (TeXstudio), Pascal Brachet (Texmaker), Luc Buant (QCodeEdit), Joel Amblard (html conversion)" for entry 2
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann (TeXstudio), Pascal Brachet (Texmaker), Luc Buant (QCodeEdit), Joel Amblard (html conversion)" for entry 2
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Kreyszig, Erwin, Herbert Kreyszig, Edward J. Norminton" for entry 301
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Raymond T. Stefani, Bahram Shahian, Clement J. Savant, Jr, Gene H. Hostetter" for entry 310
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Raymond T. Stefani, Bahram Shahian, Clement J. Savant, Jr, Gene H. Hostetter" for entry 310
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann (TeXstudio), Pascal Brachet (Texmaker), Luc Buant (QCodeEdit), Joel Amblard (html conversion)" for entry 2
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann (TeXstudio), Pascal Brachet (Texmaker), Luc Buant (QCodeEdit), Joel Amblard (html conversion)" for entry 2
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann (TeXstudio), Pascal Brachet (Texmaker), Luc Buant (QCodeEdit), Joel Amblard (html conversion)" for entry 2
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann (TeXstudio), Pascal Brachet (Texmaker), Luc Buant (QCodeEdit), Joel Amblard (html conversion)" for entry 2
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Kreyszig, Erwin, Herbert Kreyszig, Edward J. Norminton" for entry 301
+while executing---line 1090 of file plain.bst
+Warning--there's a number but no series in 301
+Too many commas in name 1 of "Raymond T. Stefani, Bahram Shahian, Clement J. Savant, Jr, Gene H. Hostetter" for entry 310
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Raymond T. Stefani, Bahram Shahian, Clement J. Savant, Jr, Gene H. Hostetter" for entry 310
+while executing---line 1090 of file plain.bst
+Warning--there's a number but no series in 310
+You've used 5 entries,
+            2118 wiz_defined-function locations,
+            523 strings with 4963 characters,
+and the built_in function-call counts, 1101 in all, are:
+= -- 104
+> -- 35
+< -- 2
++ -- 15
+- -- 10
+* -- 46
+:= -- 196
+add.period$ -- 16
+call.type$ -- 5
+change.case$ -- 18
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 48
+empty$ -- 106
+format.name$ -- 10
+if$ -- 234
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 5
+newline$ -- 27
+num.names$ -- 10
+pop$ -- 33
+preamble$ -- 1
+purify$ -- 15
+quote$ -- 0
+skip$ -- 33
+stack$ -- 0
+substring$ -- 25
+swap$ -- 7
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 16
+warning$ -- 2
+while$ -- 10
+width$ -- 6
+write$ -- 52
+(There were 15 error messages)

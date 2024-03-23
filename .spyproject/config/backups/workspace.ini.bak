@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['Midterms\\Midterms\\Exercise_01.py', 'Midterms\\cone01.py', 'Midterms\\cone02.py', 'Midterms\\cone03.py']
+recent_files = ['Midterms\\Midterms\\Exercise_01.py', 'Midterms\\cone01.py', 'Midterms\\cone02.py', 'Midterms\\cone03.py', 'Midterms\\Midterms\\Exercise_03.py', 'Midterms\\Midterms\\Exercise_02.py', 'Midterms\\Midterms\\Exercise_04.py', 'Midterms\\Midterms\\Exercise_05.py']
 
 [main]
 version = 0.2.0

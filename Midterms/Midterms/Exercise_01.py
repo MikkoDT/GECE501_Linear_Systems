@@ -46,7 +46,4 @@ Fig1.ax.plot_surface(ncx,ncy,ncz,alpha=.2)
 
 
 
-
-
-
 savefig("Data/Fig1.png")

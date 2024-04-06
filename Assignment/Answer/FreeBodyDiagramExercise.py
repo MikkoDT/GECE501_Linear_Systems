@@ -2,9 +2,9 @@
 """
 Filename: FreeBodyDiagramExercise.py
 
-Created on Sun Mar 31 15:12:42 2024
+Created on Sat Apr 06 8:11 2024
 
-@author: Celso Co
+@author: MADT
 """
 #Library
 

@@ -1,14 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Sep 20 08:52:47 2014
-@author: CBCO
-cbco rev 1 Dec 8, 2017
-cbco rev 2 Tue Apr 19 7:37:00 2022
-cbco rev 3 Wed May 31 20:45:14 2023
-cbco rev 4 Thu Jun 15 16:22:27 2023
-cbco rev 5 Wed Jan 10 02:40:22 2024
-cbco rev 6 Sat Feb 10 17:24:20 2024
-cbco rev 7 Wed Feb 21 00:42:17 2024
+Created on Sat Apr 04 08:06 2024
+@author: MDT
 
 """
 

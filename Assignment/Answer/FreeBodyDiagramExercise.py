@@ -8,12 +8,12 @@ Created on Sat Apr 06 8:11 2024
 """
 #Library
 
-from ccoLib.ccoLatex import *  #This is the library for Python-Tex coding.
-from ccoLib.ccoPlot  import *
+from mdtLib.mdtLatex import *  #This is the library for Python-Tex coding.
+from mdtLib.mdtPlot  import *
 from Data.variables  import *
 
 title="Mechanical System Diagram in LaTeX Tikz"
-author="CBCO"
+author="MADT"
 
 Preamble="\
 \\documentclass[10pt,a4paper,leqno]{article}         \n\

@@ -9,8 +9,8 @@ from sympy import symbols, latex, Function, Matrix, sqrt as Sqrt,\
                   acos as aCos
 from sympy import oo                  
 
-r, Fs1,   Fs2,   Fd1,   Fmass,   t, y, b1,  m1, k1, k2     = symbols("\
-r  F_{s1} F_{s2} F_{d1} F_{mass} t  y  b_1, m_1 K_1 K_2              ") 
+r, FK  Fd,   Fmass,   t, y, b,  m, K     = symbols("\
+r  F_{K} F_{d} F_{mass} t  y  b m K           ") 
 
 y, y0, y1, y2, y3, yn             = symbols("\
 y  y_0 y_1 y_2 y_3 y_n                      ")

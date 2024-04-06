@@ -134,46 +134,57 @@ At("\\caption{(b) Mechanical System Diagram} \\end{figure}")
 
 
 
-
-
-
-At("\\begin{figure}[H]\\centering \n")
-At("\\begin{tikzpicture}[every node/.style={outer sep=0pt,thick}]              \n\
-\\tikzstyle{spring}=[thick,decorate,decoration={zigzag,pre length=0.3cm,post   \n\
-length=0.3cm,segment length=6}]                                                \n\
-\\tikzstyle{damper}=[thick,decoration={markings,mark connection node=dmp,      \n\
-mark=at position 0.5 with                                                      \n\
-{                                                                              \n\
-\\node (dmp) [thick,inner sep=0pt,transform shape,rotate=-90,minimum           \n\
-width=15pt,minimum height=3pt,draw=none] {};                                   \n\
-\\draw [thick] ($(dmp.north east)+(2pt,0)$) -- (dmp.south east) --             \n\
-(dmp.south west) -- ($(dmp.north west)+(2pt,0)$);                              \n\
-\\draw [thick] ($(dmp.north)+(0,-5pt)$) -- ($(dmp.north)+(0,5pt)$);            \n\
-}                                                                              \n\
-}, decorate]                                                                   \n\
-\\tikzstyle{ground}=[fill,pattern=north east lines,draw=none,minimum           \n\
-width=0.75cm,minimum height=0.3cm]                                             \n\
-\\begin{scope}[xshift=7cm]                                                     \n\
-\\node (M) [draw,minimum width=1cm, minimum height=2.5cm] {$m$};               \n\
-\\draw [-latex,ultra thick] (M.east) ++ (0.1cm,0) -- +(1cm,0)node[right=.05cm]{r};                 \n\
-\\draw [-latex,ultra thick] (-2cm,.6cm) node[left=.05cm]{$F_s$} -- (-.5cm,.6cm); \n\
-\\draw [-latex,ultra thick] (-2cm,0cm) node[left=.05cm]{$F_m$}-- (-.5cm,0cm); \n\
-\\draw [-latex,ultra thick] (-2cm,-.6cm)node[left=.05cm]{$F_d$} -- (-.5cm,-.6cm); \n\
-\\end{scope}                                                                   \n\
-\\end{tikzpicture}")              
-At("\\caption{(b) Free Body Diagram} \\end{figure}")
-
-
-At("Alternative Drawing.")
+At("1. Free Body Diagram (FBD)")
 Af("Data/ExerciseFig.png",caption="Drawn using Paint Brush",height=.25)
 
+At("2. Deriving the equation.")
 
+Ce(Fk+Fd+Fmass,rF(t))                                                    #eQ[1]
 
+At("where")
 
+Ce(Fmass,m1*yF(t).diff(t,t))                                                   #eQ[2]
+Ce(Fk,k*yF(t))                                                               #eQ[3]                                                              #eQ[4]
+Ce(Fd,b*yF(t).diff(t))                                                        #eQ[4]
 
+At("Substituting (2), (3), and (4),")    
+Ce(m1*yF(t).diff(t,t)+b*yF(t).diff(t)+k*yF(t),rF(t)) 
 
+At("The equation (5) could be arranged for control system block diagram.")
 
+Ce(rF(t)-k1*yF(t)-b*yF(t).diff(t),m1*yF(t).diff(t,t))                                                                                                       
 
+At("3. Block Diagram.")
+
+At("\\begin{figure}[H]\\centering \n")
+At("\
+\\tikzstyle{block} = [draw, fill=white, rectangle,                           \n\
+    minimum height=3em, minimum width=6em]                                   \n\
+\\tikzstyle{sum} = [draw, fill=white, circle, node distance=1cm]             \n\
+\\tikzstyle{input} = [coordinate]                                            \n\
+\\tikzstyle{output} = [coordinate]                                           \n\
+\\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]                          \n\
+\\begin{tikzpicture}[auto, node distance=2cm,>=latex']                       \n\
+\\node [input, name=input] {};                                               \n\
+\\node [sum, right of=input] (sum1) {+};                                     \n\
+\\node [sum, below of=sum1, node distance = 2 cm] (sum2) {+};                \n\
+\\node [block, right of=sum1, node distance = 3 cm] (int1)                   \n\
+    {$\\frac{1}{m1 s}$};                                                     \n\
+\\node [block, right of=int1, pin={[pinstyle]above:D},                       \n\
+            node distance=4cm] (int2) {$\\frac{1}{s}$};                      \n\
+\\node [block, below of=int1] (dfb) {$-b$};                                \n\
+\\draw [->] (int1) -- node[midway](u) {$\\frac{dy(t)}{dt}$} (int2);          \n\
+\\node [output, right of=int2] (output) {};                                  \n\
+\\node [block, below of=dfb] (fb) {$-K$};                            \n\
+\\draw [draw,->] (input) -- node {$r(t)$} (sum1);                            \n\
+\\draw [->] (u) |- (dfb.east);                                               \n\
+\\draw [->] (sum1) -- node {$\\frac{m1d^2y(t)}{d^2t}$} (int1);               \n\
+\\draw [->] (int2) -- node [name=y] {$y(t)$}(output);                        \n\
+\\draw [->] (y) |- (fb);                                                     \n\
+\\draw [->] (fb) -| node[below]{$-Ky(t)$};           \n\
+\\draw [->] (dfb) -- node[above]{$-b\\frac{dy(t)}{dt}$}(sum2);             \n\
+\\end{tikzpicture} ")
+At("\\caption{Control System Block Diagram} \\end{figure}")
 
 At("\\nocite{2}")
 At("\\nocite{201}")
@@ -183,8 +194,6 @@ At("\\nocite{310}")
 
 #At("\\bibliographystyle{plain} \n \\bibliography{ccoLib/ccoBook,ccoLib/ccoArticle}")
 At("\\bibliographystyle{plain} \n \\bibliography{ccoLib/ccobib}")
-
-
 
 At("\\end{CJK*}")    
 

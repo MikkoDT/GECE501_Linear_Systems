@@ -18,94 +18,87 @@ from Data.variables import *
 
 
 
-Fig2=Space3D(title="Figure 2",sz=(8,8)) 
-
 #define the figure
+Fig2=Space3D(title="Figure 02",sz=(8,8));"Disk cut on upright cone." 
+Fig2.ax=axes(projection='3d');"Plot axes handler."
 
-Fig2.ax=axes(projection='3d')
-
-Fig2.Labels("Inverted and Upright Cones with Disk Perpedicular to Z axis")
+Fig2.Labels("The upright cone with a diskcutting across upright cone")
 Fig2.ShowAxes(30)
 
-nbase=10
-nheight=25
-nTanHalfDelta=nbase/nheight
+"Values of the Cone"
+Base=10
+Height=25
+nTanHalfDelta=Base/Height
 delta=2*aTan(nTanHalfDelta)
 res=100
 
 
-"The upright cone equation"
-#ec2=ec1.subs(u,z).subs(base,nbase).subs(height,nheight).simplify()
-ec2 = x**2 + y**2 - (nbase / nheight)**2 * z**2
+"The cone equation in Cartesian Coordinate System"
+ec2=ec1.subs(u,z).subs(base,Base).subs(height,Height).simplify()
+
+"The cylindrical axes ."
+lnphi = linspace(0,2*npi,res);"One revolution."
+lnrho = linspace(0,Base,res);"From center to perimeter of the base."
+lnz1  = linspace(0,-Height,res);"Bottom cone from center to negative height."
 
 
-lnphi = linspace(0,2*npi,res)
-lnrho = linspace(0,nbase,res)
-lnz1  = linspace(0,-nheight,res)
-lnz2  = linspace(0,nheight,res)
+ncx=outer(cos(lnphi),lnrho); "Catersian meshgrid with cylindrical geometric equivalent cos(lnphi) and lnrho." 
+ncy=outer(sin(lnphi),lnrho); "Cartesian meshgrid with cylindrical geometric equivalent sin(lnphi) and lnrho."
+ncz1=outer(ones(res),lnz1);  "ncz1 is a Catersian meshgrid with cylindrical equivalent z for bottom cone."
 
-ncx=outer(cos(lnphi),lnrho)
-ncy=outer(sin(lnphi),lnrho)
-ncz=outer(ones(res),lnz1)
-Fig2.ax.plot_surface(ncx,ncy,ncz,alpha=.2)
-ncz=outer(ones(res),lnz2)
-Fig2.ax.plot_surface(ncx,ncy,ncz,alpha=.2)
+"Plotting of the  cone "
+Fig2.ax.plot_surface(ncx,ncy,ncz1,color=(1,0,0),alpha=.2)
+Fig2.ax.plot_surface(ncx,ncy,ncz1,color=(0,1,0),alpha=.2)
 
 
+"Equation of a cylindrical circular plane perpendicular to cone height axis."
+cDisk=Eq(A*phi+B*rho+C*z,K)
+vDiskCoeff=Matrix([A,B,C]);"The [A,B,C] is a vector from origin perpendicular to the disk."
+
+mVecDiskCoeff=Sqrt(A**2+B**2+C**2);"Magnitude of [A,B,C] vector"
+uVecDiskCoeff=vDiskCoeff/mVecDiskCoeff;"[A,B,C] unit vector"
+Diskxyz=Matrix([x,y,z]);"[x,y,z] is a vector from origin to any point in the disk."
+
+e1VecDisk=Eq(Matrix(dot(Diskxyz.transpose(),vDiskCoeff)),k,evaluate=False);"The dot produc of [x,y,z] and [A,B,C] where $\\theta$ is the angle between them."
+e2VecDisk=Eq(Matrix(dot(Diskxyz.transpose(),uVecDiskCoeff)),k/mVecDiskCoeff,evaluate=False);"The projection of [x,y,z] on [A,B,C] that gives the shortest distance from origin \
+to the disk. The shortest distance is k/Mag([A,B,C])."
+
+"The disk is perpendicular to z axis and located at z=-12. Hence the disk \
+equation is expressed as follows."
+nADisk=0;nBDisk=0;nCDisk=1;nKDisk=-12
 
 
+e1CylDisk=cDisk.subs(A,nADisk).subs(B,nBDisk).subs(C,nCDisk).subs(K,nKDisk)
 
-"Equation of a circular plane perpendicular to upright cone."
-
-cCut=-12 ;"is the height at which the circular disk is cut along the cone's height axis"
-nsvcTip=array([0,0,nheight]); "define vectors that determine the orientation of the circular disk'"
-nsvcTail=array([0,0,0]);"define vectors that determine the orientation of the circular disk"
-nsvc=nsvcTip-nsvcTail;
-nloc=array([0,0,cCut]) ;"is the location where the disk is positioned within the cone"
-
-Fig2.PlotVector(nloc,nsvc,color=(1,0,0),base=.5)
+CaCyD[phi]
+CaCyD[rho]
 
 
-"Equation of the Circular Disk"
-ndisk=Fig2.GenDisk(nbase*4)
-#nrotDisk = Fig3.QuaternionRotate( ndisk, nloc, nsvc)
-nmovDisk= Fig2.Move(ndisk,nloc)
-Fig2.ax.plot_surface(nmovDisk[0],nmovDisk[1],nmovDisk[2],alpha=.2)
+sVecDiskTip=array([0,0,0]);"Coordinate of the tip of nVecDiskCoeff"
+sVecDiskTail=array([0,0,nKDisk]);"Coordinate of the tail of nVecDiskCoeff"
+sVecDisk=sVecDiskTip-sVecDiskTail;"[0,0,nKDisk] vector"
+nloc=array([0,0,nKDisk]);"Location of the disk."
+Fig2.PlotVector(nloc,sVecDisk,color=(1,0,0),base=.5)
 
-linensvc=Fig2.GenLine(nloc,-nsvc)
-Fig2.ax.plot3D(linensvc[0],linensvc[1],linensvc[2],color=(0,0,0),
+
+"The plot algorithm is based on the cylindrical equation of disk. "
+
+"Since the disk is a surface plot, the independent variables were chosen as $\\phi$ \
+and $\\rho$ as follows. The dependent varialbe is a constant. Hence z=-12."
+
+nLphi = linspace(0,2*npi,res);"From zero to one complete revolution"
+nLrho = linspace(0,Base*2,res);"Trom zero to  radius of the disk"
+nLz   = ones(res)*nKDisk;"Constant z=12 for all res data."
+
+mCarx=outer(cos(lnphi),nLrho);"Equivalent Cartesian x meshgrid of $\\phi$ and $\\rho$."
+mCary=outer(sin(lnphi),nLrho);"Equivalent Cartesian y meshgrid of $\\phi$ and $\\rho$."
+mCarz=outer(ones(res),nLz);"Equivalent Cartesian z meshgrid of z."
+
+Fig2.ax.plot_surface(mCarx,mCary,mCarz,alpha=.2)
+
+
+"Draw dashed line from point [0,0,nKDisk] to point [0,0,-nKDisk]"
+linensVecDisk=Fig2.GenLine(nloc,-sVecDisk)
+Fig2.ax.plot3D(linensVecDisk[0],linensVecDisk[1],linensVecDisk[2],color=(0,0,0),
                 linestyle="dashed")
-
-ec3=ec2.subs(z,cCut).evalf()
- 
-sdy2=solve(ec2,y**2)[0]
-
-unsvc=Fig2.UnitVector(nsvc)
-nuAcart=unsvc[0]
-nuBcart=unsvc[1]
-nuCcart=unsvc[2]
-nuKcart=dot(unsvc,nloc)
-
-"This equation represents the intersection of the upright cone and the disk "
-plnCart=Eq(nuAcart*x+nuBcart*y+nuCcart*z,nuKcart)
-
-
-
-sdy2=solve(ec3,y**2)[0]
-sdxroots=list(roots(sdy2).keys())
-nix=linspace(float(sdxroots[0]),float(sdxroots[1]),res)
-ndz=ones(res)*cCut
-
-ndyp=[];ndyn=[]
-
-for i in range(res):
-    ndyp.append( Sqrt(sdy2.subs(x,nix[i])))    
-    ndyn.append(-Sqrt(sdy2.subs(x,nix[i])))    
-
-ndyp[0]=0;ndyp[res-1]=0  
-ndyn[0]=0;ndyn[res-1]=0  
-
-Fig2.ax.plot3D(nix,ndyp,ndz)
-Fig2.ax.plot3D(nix,ndyn,ndz)
-
 savefig("Data/Fig2.png")

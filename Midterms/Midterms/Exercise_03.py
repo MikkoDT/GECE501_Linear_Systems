@@ -9,87 +9,138 @@ Midterm Exercise #1
 
 """
 #insert libraries
-from madLib.amrVector import *
-from madLib.amrPlot import *
+from madLib.madVector import *
+from madLib.madPlot import *
 from Data.variables import *
 
 
 #define the figure
-Fig3=Space3D(title="Figure 04",sz=(8,8)) 
-Fig3.ax=axes(projection='3d')
+Fig3=Space3D(title="Figure 03",sz=(8,8));"Disk cut on upright cone."
+Fig3.ax=axes(projection='3d');"Plot axes handler."
 
-Fig3.Labels(" The locus intersection of the upright plane and the disk. ")
+Fig3.Labels("The upright cone with a disk cutting across upright cone")
 Fig3.ShowAxes(30)
 
-#defining the values
-nbase=10
-nheight=25
-nTanHalfDelta=nbase/nheight
+"Values of the Cone"
+Base=15
+Height=25
+nTanHalfDelta=Base/Height
 delta=2*aTan(nTanHalfDelta)
 res=100
 
-#The cone equation
-ec2=ec1.subs(u,z).subs(base,nbase).subs(height,nheight).simplify()
+
+"The cone equation in Cartesian Coordinate System"
+ec2=ec1.subs(u,z).subs(base,Base).subs(height,Height).simplify()
+
+"The cylindrical axes ."
+lnphi = linspace(0,2*npi,res);"One revolution."
+lnrho = linspace(0,Base,res);"From center to perimeter of the base."
+lnz1  = linspace(0,-Height,res);"Bottom cone from center to negative height."
 
 
-lnphi = linspace(0,2*npi,res)
-lnrho = linspace(0,nbase,res)
-lnz1  = linspace(0,-nheight,res)
+ncx=outer(cos(lnphi),lnrho); "Catersian meshgrid with cylindrical geometric equivalent cos(lnphi) and lnrho." 
+ncy=outer(sin(lnphi),lnrho); "Cartesian meshgrid with cylindrical geometric equivalent sin(lnphi) and lnrho."
+ncz1=outer(ones(res),lnz1);  "ncz1 is a Catersian meshgrid with cylindrical equivalent z for bottom cone."
 
-ncx=outer(cos(lnphi),lnrho)
-ncy=outer(sin(lnphi),lnrho)
-ncz=outer(ones(res),lnz1)
-Fig3.ax.plot_surface(ncx,ncy,ncz,alpha=.4)
-
-#position of circular disk
-nHCut=-12
-nsvcTip=array([0,0,nheight])
-nrhoCut=(nheight-nHCut)*nTanHalfDelta
-nsvcTail=array([nrhoCut,0,nHCut])
-nsvc=nsvcTip-nsvcTail
-nloc=array([0,0,nHCut])
-
-Fig3.PlotVector(nloc,nsvc,color=(1,0,0),base=.5)
-ndisk=Fig3.GenDisk(nbase*4)
-nrotDisk = Fig3.QuaternionRotate( ndisk, nloc, nsvc)
-nmovDisk= Fig3.Move(nrotDisk,nloc)
-Fig3.ax.plot_surface(nmovDisk[0],nmovDisk[1],nmovDisk[2],alpha=.4)
+"Plotting of the  cone "
+Fig3.ax.plot_surface(ncx,ncy,ncz1,color=(1,0,0),alpha=.2)
+Fig3.ax.plot_surface(ncx,ncy,ncz1,color=(0,1,0),alpha=.2)
 
 
-ecx1=Eq(x,base*z/height*Cos(phi))
-ecy1=Eq(y,base*z/height*Sin(phi))
-ecz1=Eq(z,z)
-ec4=Eq(x**2+y**2,(ecx1.rhs**2+ecy1.rhs**2).simplify())
-ec5=ec4.subs(base,nbase).subs(height,nheight)
-ec6=Eq(rho**2,ec5.rhs)
+"Plotting of the  cone "
+Fig3.ax.plot_surface(ncx,ncy,ncz1,color=(1,0,0),alpha=.2)
+Fig3.ax.plot_surface(ncx,ncy,ncz1,color=(0,1,0),alpha=.2)
 
 
-unsvc=Fig3.UnitVector(nsvc)
-nuAcart=unsvc[0]
-nuBcart=unsvc[1]
-nuCcart=unsvc[2]
-nuKcart=dot(unsvc,nloc)
-plnCart=Eq(nuAcart*x+nuBcart*y+nuCcart*z,nuKcart)
+"Equation of a cylindrical circular plane perpendicular to cone height axis."
+cDisk=Eq(A*phi+B*rho+C*z,K)
+vDiskCoeff=Matrix([A,B,C]);"The [A,B,C] is a vector from origin perpendicular to the disk."
 
-sdx=solve(plnCart,x)[0]
+mVecDiskCoeff=Sqrt(A**2+B**2+C**2);"Magnitude of [A,B,C] vector"
+uVecDiskCoeff=vDiskCoeff/mVecDiskCoeff;"[A,B,C] unit vector"
+Diskxyz=Matrix([x,y,z]);"[x,y,z] is a vector from origin to any point in the disk."
 
-sdy2=solve(ec5,y**2)[0].subs(x,sdx)
-sdzroots=list(roots(sdy2).keys())
+e1VecDisk=Eq(Matrix(dot(Diskxyz.transpose(),vDiskCoeff)),k,evaluate=False);"The dot produc of [x,y,z] and [A,B,C] where $\\theta$ is the angle between them."
+e2VecDisk=Eq(Matrix(dot(Diskxyz.transpose(),uVecDiskCoeff)),k/mVecDiskCoeff,evaluate=False);"The projection of [x,y,z] on [A,B,C] that gives the shortest distance from origin \
+to the disk. The shortest distance is k/Mag([A,B,C])."
 
-niz=linspace(float(sdzroots[0]),float(sdzroots[1]),res)
-sdy2.subs(z,niz[0])
-sdy2.subs(z,niz[res-1])
+"The disk is perpendicular to z axis and located at z=-12. Hence the disk \
+equation is expressed as follows."
+nADisk=0;nBDisk=0;nCDisk=1;nKDisk=-12
 
-ndyn=[];ndyp=[];ndx=[]
+
+e1CylDisk=cDisk.subs(A,nADisk).subs(B,nBDisk).subs(C,nCDisk).subs(K,nKDisk)
+
+CaCyD[phi]
+CaCyD[rho]
+
+
+sVecDiskTip=array([0,0,0]);"Coordinate of the tip of nVecDiskCoeff"
+sVecDiskTail=array([0,0,nKDisk]);"Coordinate of the tail of nVecDiskCoeff"
+sVecDisk=sVecDiskTip-sVecDiskTail;"[0,0,nKDisk] vector"
+nloc=array([0,0,nKDisk]);"Location of the disk."
+Fig3.PlotVector(nloc,sVecDisk,color=(1,0,0),base=.5)
+
+
+"The plot algorithm is based on the cylindrical equation of disk. "
+
+"Since the disk is a surface plot, the independent variables were chosen as $\\phi$ \
+and $\\rho$ as follows. The dependent varialbe is a constant. Hence z=-12."
+
+nLphi = linspace(0,2*npi,res);"From zero to one complete revolution"
+nLrho = linspace(0,Base*2,res);"Trom zero to  radius of the disk"
+nLz   = ones(res)*nKDisk;"Constant z=12 for all res data."
+
+mCarx=outer(cos(lnphi),nLrho);"Equivalent Cartesian x meshgrid of $\\phi$ and $\\rho$."
+mCary=outer(sin(lnphi),nLrho);"Equivalent Cartesian y meshgrid of $\\phi$ and $\\rho$."
+mCarz=outer(ones(res),nLz);"Equivalent Cartesian z meshgrid of z."
+
+
+
+Fig3.ax.plot_surface(ncx,ncy,ncz1,color=(1,0,0),alpha=.2)
+Fig3.PlotVector(nloc,sVecDisk,color=(1,0,0),base=.5)
+Fig3.ax.plot_surface(mCarx,mCary,mCarz,alpha=.2)
+
+linensVecDisk=Fig3.GenLine(nloc,-sVecDisk)
+Fig3.ax.plot3D(linensVecDisk[0],linensVecDisk[1],linensVecDisk[1],color=(0,0,0),
+                linestyle="dashed")
+
+
+"The equation of disk in Cartesian coordinate system."
+eCarDisk=Eq(z,nKDisk);"zd=K"
+
+"The equation of cone in Cartesian Coordinate system."
+ec2;"f(xc,yc)=f(zc)"
+
+"Substituting zd=k in f(xc,yc)=f(zc), then f(xc,yc) = f(zd) "
+ec3=ec2.subs(z,nKDisk).evalf();"ec3 became f(xc,yc)=f(K)"
+"The value of z is constant and is equal to 12. Being a constant it is considred \
+dependent variable. Let's consider x as independent variable and y the dependent \
+variable. The range of values for x is determined as follows."
+
+sdy2=solve(ec3,y**2)[0]
+
+ec4=Eq(y**2,sdy2)
+
+sdxroots=list(roots(ec4.rhs).keys())
+
+nlineix=linspace(float(sdxroots[0]),float(sdxroots[1]),res)
+"x is the independent variable."
+
+ndyp=[];ndyn=[]
+"y is the dependent variable."
+
 for i in range(res):
-     ndyn.append(-float(Sqrt(sdy2.subs(z,niz[i]))))        
-     ndyp.append( float(Sqrt(sdy2.subs(z,niz[i]))))        
-     ndx.append(sdx.subs(z,niz[i]))
+    temp=Sqrt(sdy2.subs(x,nlineix[i]))
+    if temp.is_real:
+        ndyp.append(temp)    
+        ndyn.append(-temp)
+    else:
+        ndyp.append(0)    
+        ndyn.append(0)
+                
 
-Fig3.ax.plot3D(ndx,ndyp,niz)
-Fig3.ax.plot3D(ndx,ndyn,niz)
+Fig3.ax.plot3D(nlineix,ndyp,nLz)
+Fig3.ax.plot3D(nlineix,ndyn,nLz)
 
-
-savefig("Data/Fig3.png")             
-
- 
+savefig("Data/Fig3.png")

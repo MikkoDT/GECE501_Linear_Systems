@@ -1,0 +1,134 @@
+\documentclass[10pt,a4paper,leqno]{article}         
+\usepackage{CJKutf8}                          
+\usepackage{inputenc}                         
+\usepackage[T1]{fontenc}                      
+\usepackage{amsmath,esint}                    
+\usepackage{amsfonts}                         
+\usepackage{amssymb}                          
+\usepackage{xcolor}                           
+\usepackage{mathrsfs}                         
+\usepackage{makeidx}                          
+\usepackage{graphicx}                         
+\usepackage{float}                            
+\usepackage{textcomp}                         
+\usepackage{gensymb}                          
+\usepackage{ifpdf}                            
+\usepackage{tikz}                             
+\usepackage[siunitx]{circuitikz}              
+\usetikzlibrary{shapes,arrows,positioning}    
+%\usepackage{tgothic}                         
+\ifpdf                                        
+\usepackage[breaklinks,hidelinks]{hyperref}   
+\else                                         
+\usepackage{url}                              
+\fi                                           
+%\newcommand*\VF[1]{\mathbf{#1}}              
+%\newcommand*\dif{\mathop{}\!\mathrm{d}}      
+\begin{document}                              
+\author{MADT}                           
+\title{Symbolic Math of Python}                             
+\maketitle
+
+\noindent \begin{CJK*}{UTF8}{gbsn}
+ \par \ \par\noindent \section{Exercises 1}
+ \par \ \par\noindent Find y(t) of the following Laplace transforms for $t \ge 0$
+ \par \ \par\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 1\quad$\displaystyle Y{\left(s \right)} = \frac{s}{s + 2}$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 2\quad$\displaystyle Y{\left(s \right)} = \frac{3 s - 5}{s^{2} + 4 s + 2}$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 3\quad$\displaystyle Y{\left(s \right)} = \frac{3 - 6 e^{- 2 s}}{\left(s + 2\right) \left(s + 3\right)}$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 4\quad$\displaystyle Y{\left(s \right)} = \frac{10}{s^{3} + 2 s^{2} + 5 s}$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 5\quad$\displaystyle Y{\left(s \right)} = \frac{4 s + 4}{\left(s + 2\right) \left(s + 3\right)^{2}}$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\noindent \section{Exercises 2}
+ \par \ \par\noindent Solve the following differential equation using Laplace transform for 
+   $t \ge 0$ with the given initial condition
+ \par \ \par\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 1\quad$\displaystyle 4 y + \frac{d}{d t} y{\left(t \right)} = 6 e^{- 2 t}$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle y{\left(0^{-} \right)} = 3$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 2\quad$\displaystyle y + \frac{d}{d t} y{\left(t \right)} = 3 \cos{\left(2 t \right)}$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle y{\left(0^{-} \right)} = 0$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 3\quad$\displaystyle 12 y + 7 \frac{d}{d t} y{\left(t \right)} + \frac{d^{2}}{d t^{2}} y{\left(t \right)} = 4$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle y{\left(0^{-} \right)} = 3$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle \operatorname{y'}{\left(0^{-} \right)} = 0$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 4\quad$\displaystyle 20 y + 4 \frac{d}{d t} y{\left(t \right)} + \frac{d^{2}}{d t^{2}} y{\left(t \right)} = 4$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle y{\left(0^{-} \right)} = -2$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle \operatorname{y'}{\left(0^{-} \right)} = 0$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} 5\quad$\displaystyle 6 \frac{d}{d t} y{\left(t \right)} + 5 \frac{d^{2}}{d t^{2}} y{\left(t \right)} + \frac{d^{3}}{d t^{3}} y{\left(t \right)} = 0$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle y{\left(0^{-} \right)} = 3$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle \operatorname{y'}{\left(0^{-} \right)} = -2$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\begin{equation*}
+ \begin{minipage}{250pt}
+                \begin{flushleft} $\displaystyle \operatorname{y{"}}{\left(0^{-} \right)} = 7$  \end{flushleft}
+ \end{minipage}
+ \end{equation*}
+\noindent \end{CJK*}
+ \par \ \par\end{document}

@@ -5,19 +5,19 @@ Filename: Assessment.py
 
 Created on Fri Jun 24 21:06:57 2022
 
-@author: celso
+@author: mikko
 """   
 
 
-from ccoLib.ccoLatex import *  
+from mdtLib.mdtLatex import *  
 "The library for python interface with latex It is in the folder ccoLib. \
  与乳胶的蟒蛇接口的库 它位于文件夹 ccoLib 中。   "
-from ccoLib.ccoPlot  import *
+from mdtLib.mdtPlot  import *
 "The library for python plots and symbolic math. It is in the folder ccoLib. \
  用于蟒蛇图和符号数学的库。它位于文件夹 ccoLib 中。   "
 
 title="Symbolic Math of Python"
-author="CBCO"
+author="MADT"
 
 Preamble="\
 \\documentclass[10pt,a4paper,leqno]{article}         \n\

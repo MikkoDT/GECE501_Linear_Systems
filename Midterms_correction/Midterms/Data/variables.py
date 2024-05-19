@@ -68,8 +68,8 @@ dots,   cdots,  vdots,  ddots  = symbols("\
 
 "The cone equations"
 
-ecx=Eq(x,(height-u)/height*base*Cos(phi))
-ecy=Eq(y,(height-u)/height*base*Sin(phi))
+ecx=Eq(x,(u)/height*base*Cos(phi))
+ecy=Eq(y,(u)/height*base*Sin(phi))
 ecz=Eq(z,u)
 ecdelta=Eq(delta,2*aTan(rc/height))
 ec1=Eq(x**2+y**2,ecy.rhs**2+ecx.rhs**2).subs(u,z).simplify()

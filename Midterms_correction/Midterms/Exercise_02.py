@@ -12,12 +12,6 @@ distance value below the origin.Formulate the disk equation."
 
 """
 
-from madLib.madVector import *
-from madLib.madPlot import *
-from Data.variables import *
-
-
-
 #define the figure
 Fig2=Space3D(title="Figure 02",sz=(8,8));"Disk cut on upright cone." 
 Fig2.ax=axes(projection='3d');"Plot axes handler."
